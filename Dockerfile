@@ -118,7 +118,7 @@ ARG BUILD_THREADS=16
 ARG IMPORT_ADMINISTRATIVE=false
 COPY scripts/filter_administrative.sh \
       /srv/nominatim/scripts/filter_administrative.sh
-RUN dos2unix /srv/nominatim/scripts/filter_administrative.sh
+RUN dos2unix -n /srv/nominatim/scripts/filter_administrative.sh
 RUN /srv/nominatim/scripts/filter_administrative.sh
 
 # Add postgresql users
@@ -197,9 +197,9 @@ ENV KILL_PROCESS_TIMEOUT=300
 ENV KILL_ALL_PROCESSES_TIMEOUT=300
 RUN mkdir -p /etc/my_init.d
 COPY scripts/start_postgresql.sh /etc/my_init.d/00-postgresql.sh
-RUN dos2unix /etc/my_init.d/00-postgresql.sh
+RUN dos2unix -n /etc/my_init.d/00-postgresql.sh
 RUN chmod +x /etc/my_init.d/00-postgresql.sh
 COPY scripts/start_apache2.sh /etc/my_init.d/00-apache2.sh
-RUN dos2unix /etc/my_init.d/00-apache2.sh
+RUN dos2unix -n /etc/my_init.d/00-apache2.sh
 RUN chmod +x /etc/my_init.d/00-apache2.sh
 CMD ["/sbin/my_init"]
