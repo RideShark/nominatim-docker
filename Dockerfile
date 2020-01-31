@@ -76,7 +76,6 @@ RUN pip install psycopg2
 
 RUN apt-get install -y python3-pip
 RUN pip3 install psycopg2
-RUN pip3 install select
 
 
 # Create nominatim user account
