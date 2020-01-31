@@ -110,12 +110,43 @@ RUN mkdir ${USERHOME}/Nominatim/build && \
     cmake ${USERHOME}/Nominatim && \
     make
 
-RUN time curl www.google.com
-
 # Download data for initial import
 USER nominatim
-ARG PBF_URL=https://planet.osm.org/pbf/planet-latest.osm.pbf
-RUN curl -L ${PBF_URL} --create-dirs -o /srv/nominatim/src/data.osm.pbf
+## ARG PBF_URL=https://planet.osm.org/pbf/planet-latest.osm.pbf
+## RUN curl -L ${PBF_URL} --create-dirs -o /srv/nominatim/src/data.osm.pbf
+RUN curl -L http://download.geofabrik.de/africa-latest.osm.pbf --create-dirs -o /srv/nominatim/src/africa.osm.pbf && \
+    curl -L http://download.geofabrik.de/antarctica-latest.osm.pbf --create-dirs -o /srv/nominatim/src/antarctica.osm.pbf && \
+    curl -L http://download.geofabrik.de/asia-latest.osm.pbf --create-dirs -o /srv/nominatim/src/asia.osm.pbf && \
+    curl -L http://download.geofabrik.de/australia-oceania-latest.osm.pbf --create-dirs -o /srv/nominatim/src/australia.osm.pbf && \
+    curl -L http://download.geofabrik.de/central-america-latest.osm.pbf --create-dirs -o /srv/nominatim/src/central-america.osm.pbf && \
+    curl -L http://download.geofabrik.de/europe-latest.osm.pbf --create-dirs -o /srv/nominatim/src/europe.osm.pbf && \
+    curl -L http://download.geofabrik.de/north-america-latest.osm.pbf --create-dirs -o /srv/nominatim/src/north-america.osm.pbf && \
+    curl -L http://download.geofabrik.de/south-america-latest.osm.pbf --create-dirs -o /srv/nominatim/src/south-america.osm.pbf
+
+# Install OSMCtools to combine multiple pbf files into one.
+RUN apt-get install osmctools
+RUN osmconvert /srv/nominatim/src/africa.osm.pbf -o=/srv/nominatim/src/africa.o5m && \
+    osmconvert /srv/nominatim/src/antarctica.osm.pbf -o=/srv/nominatim/src/antarctica.o5m && \
+    osmconvert /srv/nominatim/src/asia.osm.pbf -o=/srv/nominatim/src/asia.o5m && \
+    osmconvert /srv/nominatim/src/australia.osm.pbf -o=/srv/nominatim/src/australia.o5m && \
+    osmconvert /srv/nominatim/src/central-america.osm.pbf -o=/srv/nominatim/src/central-america.o5m && \
+    osmconvert /srv/nominatim/src/europe.osm.pbf -o=/srv/nominatim/src/europe.o5m && \
+    osmconvert /srv/nominatim/src/north-america.osm.pbf -o=/srv/nominatim/src/north-america.o5m && \
+    osmconvert /srv/nominatim/src/south-america.osm.pbf -o=/srv/nominatim/src/south-america.o5m && \
+    osmconvert /srv/nominatim/src/africa.o5m /srv/nominatim/src/antarctica.o5m /srv/nominatim/src/asia.o5m /srv/nominatim/src/australia.o5m /srv/nominatim/src/central-america.o5m /srv/nominatim/src/europe.o5m /srv/nominatim/src/north-america.o5m /srv/nominatim/src/south-america.o5m -o=/srv/nominatim/src/allcountries.o5m && \
+    osmconvert /srv/nominatim/src/allcountries.o5m -o=/srv/nominatim/src/data.osm.pbf && \
+    rm /srv/nominatim/src/africa.osm.pbf /srv/nominatim/src/africa.o5m \
+    /srv/nominatim/src/antarctica.osm.pbf /srv/nominatim/src/antarctica.o5m \
+    /srv/nominatim/src/asia.osm.pbf /srv/nominatim/src/asia.o5m \
+    /srv/nominatim/src/australia.osm.pbf /srv/nominatim/src/australia.o5m \
+    /srv/nominatim/src/central-america.osm.pbf /srv/nominatim/src/central-america.o5m \
+    /srv/nominatim/src/europe.osm.pbf /srv/nominatim/src/europe.o5m \
+    /srv/nominatim/src/north-america.osm.pbf /srv/nominatim/src/north-america.o5m \
+    /srv/nominatim/src/south-america.osm.pbf /srv/nominatim/src/south-america.o5m \
+    /srv/nominatim/src/allcountries.o5m
+
+
+
 
 USER root
 # Install dos2unix to fix problems with building docker containers on windows.
