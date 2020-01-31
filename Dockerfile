@@ -33,7 +33,7 @@ ARG POSTGIS_VERSION=2.4
 
 # Install build dependencies
 USER root
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get install -y --no-install-recommends --fix-missing \
       apache2 \
       build-essential \
       ca-certificates \
@@ -160,6 +160,10 @@ RUN IMPORT_CONFIG_URL="${PGCONFIG_URL}? \
 # Initial import
 USER root
 ARG OSM2PGSQL_CACHE=24000
+
+# Make sure nominatim has proper dependencies installed.
+
+
 RUN service postgresql start && \
     sudo -u nominatim ${USERHOME}/Nominatim/build/utils/setup.php \
       --osm-file /srv/nominatim/src/data.osm.pbf \
