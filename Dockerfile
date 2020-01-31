@@ -72,7 +72,6 @@ RUN apt-get install -y --no-install-recommends \
 RUN pip install --upgrade pip
 RUN pip install osmium
 
-RUN apt-get install build-dep python-psycopg2
 RUN pip install psycopg2
 
 # Create nominatim user account
