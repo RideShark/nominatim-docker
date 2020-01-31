@@ -61,7 +61,7 @@ RUN apt-get install -y --no-install-recommends \
       php-pear \
       php-pgsql \
       postgresql-${PGSQL_VERSION}-postgis-${POSTGIS_VERSION} \
-      postgresql-${PGSQL_VERSION}-postgis-scripts \
+      postgresql-${PGSQL_VERSION}-postgis-${POSTGIS_VERSION}-scripts \
       postgresql-contrib-${PGSQL_VERSION} \
       postgresql-server-dev-${PGSQL_VERSION} \
       python \
