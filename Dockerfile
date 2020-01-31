@@ -118,6 +118,7 @@ ARG BUILD_THREADS=16
 ARG IMPORT_ADMINISTRATIVE=false
 COPY scripts/filter_administrative.sh \
       /srv/nominatim/scripts/filter_administrative_pre.sh
+RUN chmod a+rw /srv/nominatim/scripts/filter_administrative_pre.sh
 RUN dos2unix -n /srv/nominatim/scripts/filter_administrative_pre.sh /srv/nominatim/scripts/filter_administrative.sh
 RUN /srv/nominatim/scripts/filter_administrative.sh
 
