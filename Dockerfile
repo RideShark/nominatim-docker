@@ -25,7 +25,7 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt xenial-pgdg main" >> \
       /etc/apt/sources.list && \
     wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | \
       apt-key add -
-RUN apt-get -qq update
+RUN apt-get -qq --fix-missing update
 
 # Set build variables
 ARG PGSQL_VERSION=9.6
