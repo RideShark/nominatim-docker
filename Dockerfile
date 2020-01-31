@@ -211,8 +211,10 @@ ENV KILL_ALL_PROCESSES_TIMEOUT=300
 RUN mkdir -p /etc/my_init.d
 COPY scripts/start_postgresql.sh /etc/my_init.d/00-postgresql_pre.sh
 RUN dos2unix -n /etc/my_init.d/00-postgresql_pre.sh /etc/my_init.d/00-postgresql.sh
+RUN rm /etc/my_init.d/00-postgresql_pre.sh
 RUN chmod +x /etc/my_init.d/00-postgresql.sh
 COPY scripts/start_apache2.sh /etc/my_init.d/00-apache2_pre.sh
 RUN dos2unix -n /etc/my_init.d/00-apache2_pre.sh /etc/my_init.d/00-apache2.sh
+RUN rm /etc/my_init.d/00-apache2_pre.sh
 RUN chmod +x /etc/my_init.d/00-apache2.sh
 CMD ["/sbin/my_init"]
