@@ -1,6 +1,6 @@
 # -*-dockerfile-*-
 
-FROM phusion/baseimage:0.10.2
+FROM phusion/baseimage@sha256:29479c37fcb28089eddd6619deed43bcdbcccf2185369e0199cc51a5ec78991b
 LABEL maintainer Bryan Rayner <bryan@rideshark.com>
 
 # Use bash
