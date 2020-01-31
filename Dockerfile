@@ -1,7 +1,7 @@
 # -*-dockerfile-*-
 
-FROM phusion/baseimage:latest@sha256:29479c37fcb28089eddd6619deed43bcdbcccf2185369e0199cc51a5ec78991b
-LABEL maintainer Natan Sągol <m@merlinnot.com>
+FROM phusion/baseimage:0.11
+LABEL maintainer Bryan Rayner <bryan@rideshark.com>
 
 # Use bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
