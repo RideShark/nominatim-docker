@@ -123,6 +123,7 @@ RUN curl -L http://download.geofabrik.de/africa-latest.osm.pbf --create-dirs -o 
     curl -L http://download.geofabrik.de/north-america-latest.osm.pbf --create-dirs -o /srv/nominatim/src/north-america.osm.pbf && \
     curl -L http://download.geofabrik.de/south-america-latest.osm.pbf --create-dirs -o /srv/nominatim/src/south-america.osm.pbf
 
+USER root
 # Install OSMCtools to combine multiple pbf files into one.
 RUN apt-get install osmctools
 RUN osmconvert /srv/nominatim/src/africa.osm.pbf -o=/srv/nominatim/src/africa.o5m && \
