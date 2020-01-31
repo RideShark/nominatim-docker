@@ -110,6 +110,8 @@ RUN mkdir ${USERHOME}/Nominatim/build && \
     cmake ${USERHOME}/Nominatim && \
     make
 
+RUN time curl www.google.com
+
 # Download data for initial import
 USER nominatim
 ARG PBF_URL=https://planet.osm.org/pbf/planet-latest.osm.pbf
