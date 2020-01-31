@@ -74,6 +74,8 @@ RUN pip install osmium
 
 RUN pip install psycopg2
 
+RUN python --version
+
 # Create nominatim user account
 USER root
 RUN useradd -d /srv/nominatim -s /bin/bash -m nominatim
