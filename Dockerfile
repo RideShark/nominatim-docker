@@ -109,6 +109,7 @@ USER nominatim
 ARG PBF_URL=https://planet.osm.org/pbf/planet-latest.osm.pbf
 RUN curl -L ${PBF_URL} --create-dirs -o /srv/nominatim/src/data.osm.pbf
 
+USER root
 # Install dos2unix to fix problems with building docker containers on windows.
 RUN apt-get install -y dos2unix
 # Filter administrative boundaries
