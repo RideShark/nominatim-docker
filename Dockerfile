@@ -126,6 +126,8 @@ RUN curl -L http://download.geofabrik.de/africa-latest.osm.pbf --create-dirs -o 
 USER root
 # Install OSMCtools to combine multiple pbf files into one.
 RUN apt-get install osmctools
+
+USER nominatim
 RUN osmconvert -v --statistics /srv/nominatim/src/africa.osm.pbf -o=/srv/nominatim/src/africa.o5m && \
     osmconvert -v --statistics /srv/nominatim/src/antarctica.osm.pbf -o=/srv/nominatim/src/antarctica.o5m && \
     osmconvert -v --statistics /srv/nominatim/src/asia.osm.pbf -o=/srv/nominatim/src/asia.o5m && \
@@ -145,8 +147,6 @@ RUN osmconvert -v --statistics /srv/nominatim/src/africa.osm.pbf -o=/srv/nominat
     /srv/nominatim/src/north-america.osm.pbf /srv/nominatim/src/north-america.o5m \
     /srv/nominatim/src/south-america.osm.pbf /srv/nominatim/src/south-america.o5m \
     /srv/nominatim/src/allcountries.o5m
-
-RUN chown nominatim /srv/nominatim/src/data.osm.pbf
 
 USER root
 # Install dos2unix to fix problems with building docker containers on windows.
