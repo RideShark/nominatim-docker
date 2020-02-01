@@ -136,9 +136,9 @@ RUN osmconvert -v --statistics /srv/nominatim/src/africa.osm.pbf -o=/srv/nominat
     osmconvert -v --statistics /srv/nominatim/src/europe.osm.pbf -o=/srv/nominatim/src/europe.o5m && \
     osmconvert -v --statistics /srv/nominatim/src/north-america.osm.pbf -o=/srv/nominatim/src/north-america.o5m && \
     osmconvert -v --statistics /srv/nominatim/src/south-america.osm.pbf -o=/srv/nominatim/src/south-america.o5m && \
-    osmconvert -v --statistics /srv/nominatim/src/africa.o5m /srv/nominatim/src/antarctica.o5m /srv/nominatim/src/asia.o5m /srv/nominatim/src/australia.o5m /srv/nominatim/src/central-america.o5m /srv/nominatim/src/europe.o5m /srv/nominatim/src/north-america.o5m /srv/nominatim/src/south-america.o5m -o=/srv/nominatim/src/allcountries.o5m && \
-    osmconvert -v --statistics /srv/nominatim/src/allcountries.o5m -o=/srv/nominatim/src/data.osm.pbf && \
-    rm /srv/nominatim/src/africa.osm.pbf /srv/nominatim/src/africa.o5m \
+    osmconvert -v --statistics /srv/nominatim/src/africa.o5m /srv/nominatim/src/antarctica.o5m /srv/nominatim/src/asia.o5m /srv/nominatim/src/australia.o5m /srv/nominatim/src/central-america.o5m /srv/nominatim/src/europe.o5m /srv/nominatim/src/north-america.o5m /srv/nominatim/src/south-america.o5m -o=/srv/nominatim/src/allcountries.o5m
+RUN osmconvert -v --statistics /srv/nominatim/src/allcountries.o5m -o=/srv/nominatim/src/data.osm.pbf
+RUN rm /srv/nominatim/src/africa.osm.pbf /srv/nominatim/src/africa.o5m \
     /srv/nominatim/src/antarctica.osm.pbf /srv/nominatim/src/antarctica.o5m \
     /srv/nominatim/src/asia.osm.pbf /srv/nominatim/src/asia.o5m \
     /srv/nominatim/src/australia.osm.pbf /srv/nominatim/src/australia.o5m \
