@@ -146,8 +146,7 @@ RUN osmconvert -v --statistics /srv/nominatim/src/africa.osm.pbf -o=/srv/nominat
     /srv/nominatim/src/south-america.osm.pbf /srv/nominatim/src/south-america.o5m \
     /srv/nominatim/src/allcountries.o5m
 
-
-
+RUN chown nominatim /srv/nominatim/src/data.osm.pbf
 
 USER root
 # Install dos2unix to fix problems with building docker containers on windows.
