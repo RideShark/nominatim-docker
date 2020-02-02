@@ -130,9 +130,9 @@ RUN apt-get install osmctools
 USER nominatim
 RUN osmconvert -v --statistics /srv/nominatim/src/africa.osm.pbf -o=/srv/nominatim/src/africa.o5m && \
     rm /srv/nominatim/src/africa.osm.pbf && \
-    osmconvert -v --statistics /srv/nominatim/src/antarctica.osm.pbf -o=/srv/nominatim/src/antarctica.o5m && \
+#   osmconvert -v --statistics /srv/nominatim/src/antarctica.osm.pbf -o=/srv/nominatim/src/antarctica.o5m && \
     rm /srv/nominatim/src/antarctica.osm.pbf && \
-    osmconvert -v --statistics /srv/nominatim/src/asia.osm.pbf -o=/srv/nominatim/src/asia.o5m && \
+#   osmconvert -v --statistics /srv/nominatim/src/asia.osm.pbf -o=/srv/nominatim/src/asia.o5m && \
     rm /srv/nominatim/src/asia.osm.pbf && \
     osmconvert -v --statistics /srv/nominatim/src/australia.osm.pbf -o=/srv/nominatim/src/australia.o5m && \
     rm /srv/nominatim/src/australia.osm.pbf && \
@@ -142,17 +142,27 @@ RUN osmconvert -v --statistics /srv/nominatim/src/africa.osm.pbf -o=/srv/nominat
     rm /srv/nominatim/src/europe.osm.pbf && \
     osmconvert -v --statistics /srv/nominatim/src/north-america.osm.pbf -o=/srv/nominatim/src/north-america.o5m && \
     rm /srv/nominatim/src/north-america.osm.pbf && \
-    osmconvert -v --statistics /srv/nominatim/src/south-america.osm.pbf -o=/srv/nominatim/src/south-america.o5m && \
+#    osmconvert -v --statistics /srv/nominatim/src/south-america.osm.pbf -o=/srv/nominatim/src/south-america.o5m && \
     rm /srv/nominatim/src/south-america.osm.pbf && \
-    osmconvert -v --statistics /srv/nominatim/src/africa.o5m /srv/nominatim/src/antarctica.o5m /srv/nominatim/src/asia.o5m /srv/nominatim/src/australia.o5m /srv/nominatim/src/central-america.o5m /srv/nominatim/src/europe.o5m /srv/nominatim/src/north-america.o5m /srv/nominatim/src/south-america.o5m -o=/srv/nominatim/src/data.osm.pbf && \
-    rm /srv/nominatim/src/africa.o5m \
-       /srv/nominatim/src/antarctica.o5m \
-       /srv/nominatim/src/asia.o5m \
+    osmconvert -v --statistics \ 
+ #  /srv/nominatim/src/africa.o5m \
+ #  /srv/nominatim/src/antarctica.o5m \
+ #  /srv/nominatim/src/asia.o5m \
+    /srv/nominatim/src/australia.o5m \
+    /srv/nominatim/src/central-america.o5m \
+    /srv/nominatim/src/europe.o5m \
+    /srv/nominatim/src/north-america.o5m \
+ #  /srv/nominatim/src/south-america.o5m \ 
+    -o=/srv/nominatim/src/data.osm.pbf && \
+    rm \
+ #     /srv/nominatim/src/africa.o5m \
+ #     /srv/nominatim/src/antarctica.o5m \
+ #     /srv/nominatim/src/asia.o5m \
        /srv/nominatim/src/australia.o5m \ 
        /srv/nominatim/src/central-america.o5m \ 
        /srv/nominatim/src/europe.o5m \
-       /srv/nominatim/src/north-america.o5m \
-       /srv/nominatim/src/south-america.o5m
+ #     /srv/nominatim/src/south-america.o5m \
+       /srv/nominatim/src/north-america.o5m
 
 USER root
 # Install dos2unix to fix problems with building docker containers on windows.
