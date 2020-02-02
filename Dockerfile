@@ -128,8 +128,9 @@ USER root
 RUN apt-get install osmctools
 
 USER nominatim
-RUN osmconvert -v --statistics /srv/nominatim/src/africa.osm.pbf -o=/srv/nominatim/src/africa.o5m && \
-    rm /srv/nominatim/src/africa.osm.pbf && \
+
+#   osmconvert -v --statistics /srv/nominatim/src/africa.osm.pbf -o=/srv/nominatim/src/africa.o5m && \
+RUN rm /srv/nominatim/src/africa.osm.pbf && \
 #   osmconvert -v --statistics /srv/nominatim/src/antarctica.osm.pbf -o=/srv/nominatim/src/antarctica.o5m && \
     rm /srv/nominatim/src/antarctica.osm.pbf && \
 #   osmconvert -v --statistics /srv/nominatim/src/asia.osm.pbf -o=/srv/nominatim/src/asia.o5m && \
